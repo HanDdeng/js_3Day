@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <div>
+        <select id="year-select">
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            ……
+            <option value="2032">2002</option>
+        </select>
+
+        <select id="month-select">
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+
+        <select id="date-select">
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="31">31</option>
+        </select>
+
+        <select id="hours-select">
+            <option value="0">00</option>
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+        </select>
+
+        <select id="minute-select">
+            <option value="0">00</option>
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="31">31</option>
+            <option value="32">32</option>
+            <option>59</option>
+        </select>
+
+        <select id="second-select">
+            <option value="0">00</option>
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05</option>
+            <option value="6">06</option>
+            <option value="7">07</option>
+            <option value="8">08</option>
+            <option value="9">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option>59</option>
+        </select>
+    </div>
+
+    <p id="result-wrapper">现在距离 2001年1月1日星期X 00:00:00 还有 X 天 X 小时 X 分 X 秒</p>
+    <script>
+        onload = () => {
+            const div = document.querySelector('div');
+            div.addEventListener('change',(e) => {
+                    // console.log(e.target.id.substr(0,2));
+                    changeP(e);
+            });
+        }
+        function changeP(e) {
+            const doc = document;
+            const p = doc.querySelector('p');
+            p.textContent = setFormat(selectDate(),'现在距离:yyyy年mm月dd日 w HH:MM:SS') + P2();
+        }
+        setInterval(changeP,1000);
+        function fill(num) {
+            if (num < 10) {
+                return '0'+num;
+            } else {
+                return num;
+            }
+        }
+        function selectDate() {
+            const doc = document;
+            const year = doc.getElementById('year-select').value;
+            const month = doc.getElementById('month-select').value;
+            const date = doc.getElementById('date-select').value;
+            const hours = doc.getElementById('hours-select').value;
+            const minute = doc.getElementById('minute-select').value;
+            const second = doc.getElementById('second-select').value;
+            const day = new Date(`${year}-${month}-${date}`).getDay();
+            const selectDate = {
+                getFullYear:() => {
+                    return year;
+                },
+                getMonth:() => {
+                    return month;
+                },
+                getDate:() => {
+                    return date;
+                },
+                getDay:() => {
+                    return day;
+                },
+                getMinutes:() => {
+                    return minute;
+                },
+                getHours:() => {
+                    return hours;
+                },
+                getSeconds:() => {
+                    return second;
+                }
+            }
+            return selectDate;
+        }
+        /*
+        格式：年月份小写对应，时分秒大写对应，星期w对应
+        */
+        function setFormat(date,str) {
+            return str.replace('yyyy',date.getFullYear())
+            .replace('mm',fill(date.getMonth()))
+            .replace('dd',fill(date.getDate()))
+            .replace('w',getDay(date.getDay()))
+            .replace('HH',fill(date.getHours()))
+            .replace('MM',fill(date.getMinutes()))
+            .replace('SS',fill(date.getSeconds()));
+        }
+        function getDay(date, language) {
+            switch (date) {
+                case 0:
+                    if (language === 'E') {
+                        return 'Sunday'
+                    } else {
+                        return '星期天';
+                    }
+                    break;
+                case 1:
+                    if (language === 'E') {
+                        return 'Monday'
+                    } else {
+                        return '星期一';
+                    }
+                    break;
+                case 2:
+                    if (language === 'E') {
+                        return 'Tuesday'
+                    } else {
+                        return '星期二';
+                    }
+                    break;
+                case 3:
+                    if (language === 'E') {
+                        return 'Wednesday'
+                    } else {
+                        return '星期三';
+                    }
+                    break;
+                case 4:
+                    if (language === 'E') {
+                        return 'Thursday'
+                    } else {
+                        return '星期四';
+                    }
+                    break;
+                case 5:
+                    if (language === 'E') {
+                        return 'Friday'
+                    } else {
+                        return '星期五';
+                    }
+                    break;
+                case 6:
+                    if (language === 'E') {
+                        return 'Saturday'
+                    } else {
+                        return '星期六';
+                    }
+                    break;
+            }
+        }
+        function P2() {
+            const time = new Date(setFormat(selectDate(),'yyyy-mm-dd HH:MM:SS')).getTime()/1000;
+            const myDate = new Date().getTime()/1000;
+            const compare = time - myDate;
+            const absCompare = Math.abs(compare);
+            const day = Math.floor(absCompare / (60 * 60 * 24));
+            const hours = Math.floor((absCompare % (60 * 60 * 24)) / (60 * 60));
+            let minute = Math.floor(((absCompare % (60 * 60 * 24)) % (60 * 60)) / 60);
+            let second = Math.round(((absCompare % (60 * 60 * 24)) % (60 * 60)) % 60);
+            // if ( second ===60 ) {
+            //     ++minute;
+            //     second = 0;
+            // }
+            const result = {
+                getFullYear:() => {
+                    return null;
+                },
+                getMonth:() => {
+                    return null;
+                },
+                getDay:() => {
+                    return null;
+                },
+                getDate:() => {
+                    return day;
+                },
+                getHours:() => {
+                    return hours;
+                },
+                getMinutes:() => {
+                    return minute;
+                },
+                getSeconds:() => {
+                    return second;
+                }
+            }
+            if (compare > 0) {
+                return `还有:${setFormat(result,'dd天HH时MM分SS秒')}`;
+            } else if (compare == 0) {
+                return '一秒不差！！！';
+            } else {
+                return `过去:${setFormat(result,'dd天HH时MM分SS秒')}`;
+            }
+            console.log(time);
+        }
+    </script>
+</body>
+
+</html>

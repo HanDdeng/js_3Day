@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <script>
+        var tree = {
+            "id": 0,
+            "name": "root",
+            "left": {
+                "id": 1,
+                "name": "Simon",
+                "left": {
+                    "id": 3,
+                    "name": "Carl",
+                    "left": {
+                        "id": 7,
+                        "name": "Lee",
+                        "left": {
+                            "id": 11,
+                            "name": "Fate"
+                        }
+                    },
+                    "right": {
+                        "id": 8,
+                        "name": "Annie",
+                        "left": {
+                            "id": 12,
+                            "name": "Saber"
+                        }
+                    }
+                },
+                "right": {
+                    "id": 4,
+                    "name": "Tony",
+                    "left": {
+                        "id": 9,
+                        "name": "Candy"
+                    }
+                }
+            },
+            "right": {
+                "id": 2,
+                "name": "right",
+                "left": {
+                    "id": 5,
+                    "name": "Carl_2",
+                },
+                "right": {
+                    "id": 6,
+                    "name": "Carl_3",
+                    "right": {
+                        "id": 10,
+                        "name": "Kai"
+                    }
+                }
+            }
+        }
+
+        // 假设id和name均不会重复，根据输入name找到对应的id
+        function findIdByName(inputName) {
+            // console.log(tree.name);
+            if (tree.name === inputName) {
+                // console.log(tree.id);
+                return tree.id;
+            } else {
+                for (const key in tree) {
+                    // console.log(Object.prototype.toString.call(tree[key]) === '[object Object]');
+                    // console.log('1');
+                    if (!(Object.prototype.toString.call(tree[key]) === '[object Object]')) {
+                        continue;
+                    } else {
+                        const obj = tree[key];
+                        // console.log(obj);
+                        if (obj.name === inputName) {
+                            return obj.id;
+                        } else {
+                            for (const key in obj) {
+                                // console.log('2');
+                                if (!(Object.prototype.toString.call(obj[key]) === '[object Object]')) {
+                                    continue;
+                                } else {
+                                    const obj_1 = obj[key];
+                                    // console.log(obj);
+                                    if (obj_1.name === inputName) {
+                                        return obj_1.id;
+                                    } else {
+                                        for (const key in obj_1) {
+                                            // console.log('3');
+                                            if (!(Object.prototype.toString.call(obj_1[key]) === '[object Object]')) {
+                                                continue;
+                                            } else {
+                                                const obj_2 = obj_1[key];
+                                                // console.log(obj_2);
+                                                if (obj_2.name === inputName) {
+                                                    return obj_2.id;
+                                                } else {
+                                                    for (const key in obj_2) {
+                                                        // console.log('4');
+                                                        if (!(Object.prototype.toString.call(obj_2[key]) === '[object Object]')) {
+                                                            continue;
+                                                        }
+                                                        const obj_3 = obj_2[key];
+                                                        // console.log(obj_3);
+                                                        if (obj_3.name === inputName) {
+                                                            return obj_3.id;
+                                                        } else {
+                                                            for (const key in obj_2) {
+                                                                // console.log('4');
+                                                                if (!(Object.prototype.toString.call(obj_3[key]) === '[object Object]')) {
+                                                                    continue;
+                                                                }
+                                                                const obj_4 = obj_3[key];
+                                                                console.log(obj_4);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 假设id和name均不会重复，根据输入id找到对应的name
+        function findNameById(inputId) {
+            if (tree.id === inputId) {
+                // console.log(tree.id);
+                return tree.name;
+            } else {
+                for (const key in tree) {
+                    // console.log(Object.prototype.toString.call(tree[key]) === '[object Object]');
+                    // console.log('1');
+                    if (!(Object.prototype.toString.call(tree[key]) === '[object Object]')) {
+                        continue;
+                    } else {
+                        const obj = tree[key];
+                        // console.log(obj);
+                        if (obj.id === inputId) {
+                            return obj.name;
+                        } else {
+                            for (const key in obj) {
+                                // console.log('2');
+                                if (!(Object.prototype.toString.call(obj[key]) === '[object Object]')) {
+                                    continue;
+                                } else {
+                                    const obj_1 = obj[key];
+                                    // console.log(obj);
+                                    if (obj_1.id === inputId) {
+                                        return obj_1.name;
+                                    } else {
+                                        for (const key in obj_1) {
+                                            // console.log('3');
+                                            if (!(Object.prototype.toString.call(obj_1[key]) === '[object Object]')) {
+                                                continue;
+                                            } else {
+                                                const obj_2 = obj_1[key];
+                                                // console.log(obj_2);
+                                                if (obj_2.id === inputId) {
+                                                    return obj_2.name;
+                                                } else {
+                                                    for (const key in obj_2) {
+                                                        // console.log('4');
+                                                        if (!(Object.prototype.toString.call(obj_2[key]) === '[object Object]')) {
+                                                            continue;
+                                                        }
+                                                        const obj_3 = obj_2[key];
+                                                        // console.log(obj_3);
+                                                        if (obj_3.id === inputId) {
+                                                            return obj_3.name;
+                                                        } else {
+                                                            for (const key in obj_2) {
+                                                                // console.log('4');
+                                                                if (!(Object.prototype.toString.call(obj_3[key]) === '[object Object]')) {
+                                                                    continue;
+                                                                }
+                                                                const obj_4 = obj_3[key];
+                                                                console.log(obj_4);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+        function getListWithDLR(tree) {
+            console.log(tree.id);
+            function isObj(key) {
+                const result = Object.prototype.toString.call(key) === '[object Object]';
+                return result;
+            }
+            for (const key in tree) {
+                if (isObj(tree[key])) {
+                    getListWithDLR(tree[key]);
+                }
+            }
+        }
+
+        // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+        function getListWithLDR(tree) {
+            if (tree.left) {
+                getListWithLDR(tree.left);
+            }
+            console.log(tree.id);
+            if (tree.right) {
+                getListWithLDR(tree.right);
+            }
+        }
+
+        // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+        function getListWithLRD(tree) {
+            if (tree.left) {
+                getListWithLRD(tree.left);
+            }
+            if (tree.right) {
+                getListWithLRD(tree.right);
+            }
+            console.log(tree.id);
+        }
+    </script>
+</body>
+
+</html>

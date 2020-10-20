@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html languageg="zh-CN">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="">
+    <style>
+        * {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        onload = () => {
+            const Interval = setInterval(() => {
+                const date = new Date();
+                const myDate = `${getYear(date)}
+                ${getMonth(date)}
+                ${getDate(date)}
+                ${getDay(date,'E')}
+                ${getMyHFS(date)}`;
+                document.querySelector('p').textContent = myDate;
+            }, 1000);
+        }
+        function getDay(date, language) {
+            switch (date.getDay()) {
+                case 0:
+                    if (language === 'E') {
+                        return 'Sunday'
+                    } else {
+                        return '星期天';
+                    }
+                    break;
+                case 1:
+                    if (language === 'E') {
+                        return 'Monday'
+                    } else {
+                        return '星期一';
+                    }
+                    break;
+                case 2:
+                    if (language === 'E') {
+                        return 'Tuesday'
+                    } else {
+                        return '星期二';
+                    }
+                    break;
+                case 3:
+                    if (language === 'E') {
+                        return 'Wednesday'
+                    } else {
+                        return '星期三';
+                    }
+                    break;
+                case 4:
+                    if (language === 'E') {
+                        return 'Thursday'
+                    } else {
+                        return '星期四';
+                    }
+                    break;
+                case 5:
+                    if (language === 'E') {
+                        return 'Friday'
+                    } else {
+                        return '星期五';
+                    }
+                    break;
+                case 6:
+                    if (language === 'E') {
+                        return 'Saturday'
+                    } else {
+                        return '星期六';
+                    }
+                    break;
+            }
+        }
+        function getYear(date) {
+            return date.getFullYear() + '年';
+        }
+        function getMonth(date) {
+            const Month = date.getMonth() + 1;
+            if (Month < 10) {
+                return `0${Month}月`;
+            } else {
+                return `${Month}月`;
+            }
+        }
+        function getDate(date) {
+            return date.getDate() + '日';
+        }
+        function getHours(date) {
+            const hours = date.getHours();
+            if (hours < 10) {
+                return `0${hours}`;
+            } else {
+                return `${hours}`;
+            }
+        }
+        function getMinutes(date) {
+            const minutes = date.getMinutes();
+            if (minutes < 10) {
+                return `0${minutes}`;
+            } else {
+                return `${minutes}`;
+            }
+        }
+        function getSeconds(date) {
+            const seconds = date.getSeconds();
+            if (seconds < 10) {
+                return `0${seconds}`;
+            } else {
+                return `${seconds}`;
+            }
+        }
+        function getMyHFS(date, num) {
+            let HH = getHours(date);
+            const mm = getMinutes(date);
+            const ss = getSeconds(date);
+            if (num) {
+                if (HH < 12) {
+                    return `${HH}:${mm}:${ss} am`;
+                } else {
+                    HH -= 12;
+                    return `${HH}:${mm}:${ss} pm`;
+                }
+            } else {
+                return `${HH}:${mm}:${ss}`;
+            }
+        }
+    </script>
+</body>
+
+</html>
